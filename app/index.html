@@ -5,6 +5,7 @@
     <meta name="description" content="You have 7 minutes in a day, goddammit!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>7 minutes</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:800' rel='stylesheet' type='text/css'>
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css styles/main.css -->
@@ -12,7 +13,6 @@
     <!-- endbower -->
 
     <link rel="stylesheet" href="styles/main.css">
-    <link href='http://fonts.googleapis.com/css?family=Raleway:800' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
 
@@ -21,19 +21,23 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="bg">
+      <img src=""></img>
+    </div>
+
+    <div id="container">
+      <div id="content">
+        workout ready, press anything
+      </div>
+    </div>
+
     <!-- build:js scripts/main.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/handlebars/handlebars.js"></script>
-    <script src="../bower_components/ember/ember.js"></script>
-    <script src="../bower_components/ember-model/ember-model.js"></script>
     <script src="../bower_components/speech-synthesis/src/polyfill.js"></script>
+    <script src="../bower_components/micro-machine/dist/micro-machine.min.js"></script>
     <!-- endbower -->
-    <!-- endbuild -->
-
-    <script src="scripts/templates.js"></script>
     <script src="scripts/application.js"></script>
-    <script src="scripts/router.js"></script>
     <!-- endbuild -->
   </body>
 </html>

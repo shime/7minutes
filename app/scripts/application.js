@@ -1,10 +1,9 @@
-window.MathUtils = {};
-window.MathUtils.randomInt = function(min, max){
+window.Utils = {};
+window.Utils.randomInt = function(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-window.Speech = {};
-window.Speech.say = function(what){
+window.Utils.say = function(what){
   var fallbackSpeechSynthesis = window.getSpeechSynthesis(),
       FallbackSpeechSynthesisUtterance = window.getSpeechSynthesisUtterance(),
       u = new FallbackSpeechSynthesisUtterance(what);
@@ -14,26 +13,9 @@ window.Speech.say = function(what){
 
 log = function() { return console.log.apply(console, arguments); };
 
-var defaults = {
-  'img': 'images/' + MathUtils.randomInt(1, 4) + '.jpg',
-  'content': 'workout ready, press anything'
-};
-
-window.App = Ember.Application.create();
-App.setProperties(defaults);
-
-App.reopen({
-  speaker: function(){
-    Speech.say(this.get('content'));
-  }.observes('content')
+$(document).ready(function(){
+  $('img').attr('src', 'images/' + Utils.randomInt(1, 4) + '.jpg');
 });
-
-var attr = Em.attr;
-App.Step = Em.Model.extend({
-  content: attr()
-});
-
-App.Step.adapter = Em.FixtureAdapter.create();
 
 var rest = {id: 'break', content: 'take a break'};
 var step = function(which){
@@ -43,7 +25,7 @@ var step = function(which){
   };
 };
 
-App.Step.FIXTURES = [
+window.STEPS = [
   step('jumping jacks'),
   rest,
   step('wall sit'),

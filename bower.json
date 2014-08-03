@@ -2,11 +2,8 @@
   "name": "web",
   "private": true,
   "dependencies": {
-    "ember": "~1.6.1",
-    "ember-model": "81e0b741c5711ab4c6624d5c46a90f19a5861912",
-    "speech-synthesis": "*"
-  },
-  "resolutions": {
-    "ember": "~1.6.1"
+    "jquery": "*",
+    "speech-synthesis": "*",
+    "micro-machine": "shime/micro-machine-js"
   }
 }
