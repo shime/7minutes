@@ -2,26 +2,29 @@ html {
   color: #fff;
 }
 
-#container
+.container
 {
   font-family: 'Raleway', sans-serif;
   position: absolute;
   top: 50%;
   left: 50%;
+
+  div {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    left: -50%;
+    color: #fff;
+    font-weight: bold;
+    font-size: 6em;
+
+    .timer {
+      top: -100%;
+    }
+  }
 }
 
-#content
-{
-  text-align: center;
-  width: 100%;
-  position: relative;
-  left: -50%;
-  color: #fff;
-  font-weight: bold;
-  font-size: 6em;
-}
-
-#bg {
+.bg {
   position: fixed; 
   top: -50%; 
   left: -50%; 
@@ -29,7 +32,7 @@ html {
   height: 200%;
 }
 
-#bg img {
+.bg img {
   position: absolute; 
   top: 0; 
   left: 0; 

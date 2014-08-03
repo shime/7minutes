@@ -4,6 +4,7 @@
   "dependencies": {
     "jquery": "*",
     "speech-synthesis": "*",
-    "micro-machine": "shime/micro-machine-js"
+    "micro-machine": "shime/micro-machine-js",
+    "q": "1.0.1"
   }
 }
