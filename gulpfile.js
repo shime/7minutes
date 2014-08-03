@@ -3,12 +3,9 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
-gulp.task('templates', function() {
-  return gulp.src('app/templates/**/*.hbs')
-    .pipe($.emberHandlebars({outputType: 'browser'}))
-    .pipe($.concat('templates.js'))
-    .pipe(gulp.dest('.tmp/scripts'));
-});
+var onError = function (err) {
+	console.log(err);
+};
 
 gulp.task('styles', function() {
   return gulp.src('app/styles/main.scss')
@@ -28,14 +25,14 @@ gulp.task('jshint', function() {
     .pipe($.jshint.reporter('fail'));
 });
 
-gulp.task('html', ['templates', 'styles'], function() {
+gulp.task('html', ['styles'], function() {
   var lazypipe = require('lazypipe');
   var cssChannel = lazypipe()
     .pipe($.csso)
-    .pipe($.replace, 'bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap', 'fonts');
   var assets = $.useref.assets({searchPath: '{.tmp,app}'});
 
   return gulp.src('app/*.html')
+    .pipe($.plumber({errorHandler: onError }))
     .pipe(assets)
     .pipe($.if('*.js', $.uglify()))
     .pipe($.if('*.css', cssChannel()))
@@ -85,7 +82,7 @@ gulp.task('connect', function() {
     });
 });
 
-gulp.task('serve', ['connect', 'templates', 'styles'], function() {
+gulp.task('serve', ['connect', 'styles'], function() {
   require('opn')('http://localhost:9000');
 });
 
@@ -117,7 +114,6 @@ gulp.task('watch', ['jshint', 'connect', 'serve'], function() {
   ]).on('change', $.livereload.changed);
 
   gulp.watch('app/**/*.js', ['jshint']);
-  gulp.watch('app/templates/**/*.hbs', ['templates']);
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('bower.json', ['wiredep']);
 });
