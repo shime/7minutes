@@ -9,6 +9,29 @@ $icon-font-path: '../bower_components/bootstrap-sass-official/assets/fonts/boots
 
 @import "browsehappy";
 
+html {
+  color: #fff;
+}
+
+#container
+{
+  font-family: 'Raleway', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#content
+{
+  text-align: center;
+  width: 100%;
+  position: relative;
+  left: -50%;
+  color: #fff;
+  font-weight: bold;
+  font-size: 6em;
+}
+
 #bg {
   position: fixed; 
   top: -50%; 
