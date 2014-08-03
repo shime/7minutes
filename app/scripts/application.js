@@ -7,9 +7,9 @@ window.Utils.say = function(what){
   var fallbackSpeechSynthesis = window.getSpeechSynthesis(),
       FallbackSpeechSynthesisUtterance = window.getSpeechSynthesisUtterance(),
       u = new FallbackSpeechSynthesisUtterance(what);
-      u.onend = function(event){
+      u.onend = function(){
         // TODO: figure out how to use this
-      }
+      };
 
   fallbackSpeechSynthesis.speak(u);
 };
@@ -33,7 +33,7 @@ function Timer(){
     DOM.text(value);
     var interval = setInterval(function(){ 
       DOM.text(--self.value);
-      if (self.value == 0){
+      if (self.value === 0){
         dfd.resolve();
         clearInterval(interval);
       }
@@ -43,7 +43,7 @@ function Timer(){
 
   this.destroy = function(){
     DOM.remove();
-  }
+  };
 }
 
 function MainState(){
@@ -53,7 +53,7 @@ function MainState(){
 
   var self = this,
       DOMContent = $('.content'),
-      DOMBody    = $('body');
+      DOMBody    = $('body'),
       timer      = new Timer(),
       stepIndex  = 0;
 
@@ -69,17 +69,17 @@ function MainState(){
 
   this.endTraining = function(){
     machine.trigger('finished');
-    Utils.say("Training finished! Congratulations!");
-    DOMContent.text("yay");
+    Utils.say('Training finished! Congratulations!');
+    DOMContent.text('yay');
     timer.destroy();
   };
 
   this.changeStep = function(step){
     self.step = step;
-    Utils.say(step.content);
+    Utils.say(step.voice || step.content);
     DOMContent.text(step.content);
     timer.countdown(step.duration).then(function(){
-      if (stepIndex == STEPS.length - 1) self.endTraining();
+      if (stepIndex === STEPS.length - 1) { self.endTraining(); }
       var nextStep  = STEPS[++stepIndex];
       self.changeStep(nextStep);
     });
@@ -90,7 +90,7 @@ function MainState(){
   return this;
 }
 
-var rest = {id: 'break', content: 'take a break', duration: 10};
+var rest = {id: 'break', voice: 'take a break', content: 'break', duration: 10};
 var step = function(which, duration){
   return {
     id: which.replace(/ /g, '-'),
