@@ -60,7 +60,7 @@ function MainState(){
 
   this.endTraining = function(){
     Utils.say('Training finished! Congratulations!');
-    DOMContent.text('yay');
+    DOMContent.text('you made it');
     timer.destroy();
   };
 
@@ -78,7 +78,27 @@ function MainState(){
   return this;
 }
 
-var rest = {id: 'break', voice: 'take a break', content: 'break', duration: 10};
+window.ENCOURAGEMENTS = [
+  'awesome',
+  'amazing',
+  'boom',
+  'you rock',
+  'fuck yes',
+  'that\'s the spirit'
+];
+
+var rest = function(){
+  var prefix = ENCOURAGEMENTS[Utils.randomInt(0, ENCOURAGEMENTS.length - 1)],
+      voice  = prefix + '! take a break';
+
+  return {
+    id: 'break',
+    voice: voice,
+    content: 'break',
+    duration: 10
+  };
+};
+
 var step = function(which, duration){
   return {
     id: which.replace(/ /g, '-'),
@@ -89,27 +109,27 @@ var step = function(which, duration){
 
 window.STEPS = [
   step('jumping jacks'),
-  rest,
+  rest(),
   step('wall sit'),
-  rest,
+  rest(),
   step('push-up'),
-  rest,
+  rest(),
   step('abdominal crunch'),
-  rest,
+  rest(),
   step('step-up onto chair'),
-  rest,
+  rest(),
   step('squat'),
-  rest,
+  rest(),
   step('triceps dip onto chair'),
-  rest,
+  rest(),
   step('plank'),
-  rest,
+  rest(),
   step('high knees running in place'),
-  rest,
+  rest(),
   step('lunge'),
-  rest,
+  rest(),
   step('push-up and rotation'),
-  rest,
+  rest(),
   step('left side plank', 15),
   step('right side plank', 15)
 ];
