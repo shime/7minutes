@@ -17,7 +17,7 @@ window.Utils.say = function(what){
 log = function() { return console.log.apply(console, arguments); };
 
 $(document).ready(function(){
-  $('img').attr('src', 'images/' + Utils.randomInt(1, 4) + '.jpg');
+  $('img').attr('src', 'assets/' + Utils.randomInt(1, 4) + '.jpg');
   $('body').on('keypress', function(){
     window.MainState.startTraining();
   });
