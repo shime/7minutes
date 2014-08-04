@@ -47,28 +47,18 @@ function Timer(){
 }
 
 function MainState(){
-  var machine = new MicroMachine('initializing');
-  machine.transitionsFor.training = {initializing: 'training'};
-  machine.transitionsFor.finished = {training: 'finished'};
-
   var self = this,
       DOMContent = $('.content'),
       DOMBody    = $('body'),
       timer      = new Timer(),
       stepIndex  = 0;
 
-  machine.on('any', function(machine){
-    self.state = machine.state;
-  });
-
   this.startTraining = function(){
     DOMBody.off('keypress');
-    machine.trigger('training');
     this.changeStep(window.STEPS[0]);
   };
 
   this.endTraining = function(){
-    machine.trigger('finished');
     Utils.say('Training finished! Congratulations!');
     DOMContent.text('yay');
     timer.destroy();
@@ -84,8 +74,6 @@ function MainState(){
       self.changeStep(nextStep);
     });
   };
-
-  this.state = undefined;
 
   return this;
 }
